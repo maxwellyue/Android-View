@@ -7,18 +7,6 @@ import android.widget.LinearLayout;
 
 import com.yue.maxwell.androidview.R;
 
-/**
- * 2016/10/2 0002，由 Administrator 创建 .
- * <p>
- * 功能描述：
- * <p>
- * 说明：
- * ---------------------------
- * 修改时间：
- * 修改说明：
- * 修改人：
- */
-
 public class RatioLinearLayout extends LinearLayout {
 
     private static final float DEFAULT_RATIO = 1;//默认宽高比
