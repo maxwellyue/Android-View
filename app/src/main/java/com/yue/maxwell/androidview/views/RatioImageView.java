@@ -39,7 +39,6 @@ public class RatioImageView extends ImageView {
 
     public void setRatio(float ratio){
         this.ratio = ratio;
-        //invalidate();
     }
 
     @Override
