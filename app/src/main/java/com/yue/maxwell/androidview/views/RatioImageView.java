@@ -1,31 +1,45 @@
-package com.yue.maxwell.android_view.views;
+package com.yue.maxwell.androidview.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.yue.maxwell.androidview.R;
+
 /**
- * 固定宽度：长度 = ratio的自定义LinearLayout
- * Created by Administrator on 2016/7/12 0012.
+ * 作者：maxwellyue
+ * 说明：
+ * （1）ratio = 宽度：长度 ；
+ * （2）使用时，设定宽度即可，高度任意。
+ * （3）代码中调用setRadio会覆盖xml中定义的比例，以setRadio为准。
+ *
  *
  */
 public class RatioImageView extends ImageView {
-    private float ratio = 1.33333333f;//默认宽高比
+
+    private static final float DEFAULT_RATIO = 1;//默认宽高比
+
+    private float ratio;
     public RatioImageView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public RatioImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context, attrs);
+
     }
 
-    public RatioImageView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    private void init(Context context, AttributeSet attrs) {
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RatioImageView);
+        ratio = ta.getFloat(R.styleable.RatioImageView_ratio, DEFAULT_RATIO);
+        ta.recycle();
     }
 
     public void setRatio(float ratio){
         this.ratio = ratio;
-        invalidate();
+        //invalidate();
     }
 
     @Override
@@ -52,7 +66,6 @@ public class RatioImageView extends ImageView {
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(heightSize,
                 MeasureSpec.EXACTLY);
 
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        // setMeasuredDimension(measuredWidth, measuredHeight);//两者等价
+        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);//两者等价
     }
 }
